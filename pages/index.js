@@ -5,7 +5,6 @@ import { extendTheme, SimpleGrid, Avatar } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { CheckCircle, Clock, Music, Settings, Moon } from 'lucide-react';
 import { FaProductHunt } from 'react-icons/fa';
-import { Analytics } from "@vercel/analytics/react"
 import TikTokPixel from './TikTokPixel';
 
 const theme = extendTheme({
@@ -518,7 +517,6 @@ const DashDotLanding = () => {
   return (
     <ChakraProvider theme={theme}>
       <TikTokPixel />
-      <Analytics />
       <Box minH="100vh" bg={useColorModeValue('gray.50', 'gray.900')} className="font-sans h-screen overflow-y-scroll snap-y snap-mandatory scrollbar-hide">
         <Header />
         <FeaturesSection />
