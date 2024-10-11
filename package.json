@@ -1,0 +1,39 @@
+{
+  "name": "dashdot-landing",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^2.2.4",
+    "@chakra-ui/react": "^2.10.2",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "autoprefixer": "^10.4.20",
+    "framer-motion": "^11.11.7",
+    "gsap": "^3.12.5",
+    "lodash": "^4.17.21",
+    "lucide-react": "^0.451.0",
+    "mouse-follower": "^1.1.2",
+    "next": "14.2.15",
+    "next-seo": "^6.6.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-icons": "^5.3.0",
+    "react-intersection-observer": "^9.13.1",
+    "react-parallax": "^3.5.1",
+    "react-scroll-snap": "^1.0.0",
+    "scroll-snap": "^4.0.5",
+    "throttle": "^1.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.2.15",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13"
+  }
+}
