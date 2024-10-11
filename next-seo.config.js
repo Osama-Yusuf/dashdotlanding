@@ -5,13 +5,13 @@ export default {
     description:
         'Best productivity tool with Pomodoro timer and task manager for students.',
     openGraph: {
-        url: 'https://yourdomain.com/',
+        url: 'https://www.dashdot.pro/logo.png/',
         title: 'DashDot - Boost Your Productivity',
         description:
             'Best productivity tool with Pomodoro timer and task manager for students.',
         images: [
             {
-                url: 'https://yourdomain.com/og-image.jpg',
+                url: 'https://www.dashdot.pro/logo.png',
                 width: 800,
                 height: 600,
                 alt: 'DashDot Logo',
@@ -20,7 +20,7 @@ export default {
         site_name: 'DashDot',
     },
     twitter: {
-        handle: '@yourhandle',
+        handle: '@Osama__Yusuf',
         site: '@site',
         cardType: 'summary_large_image',
     },

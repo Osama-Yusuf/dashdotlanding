@@ -5,6 +5,8 @@ import { extendTheme, SimpleGrid, Avatar } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { CheckCircle, Clock, Music, Settings, Moon } from 'lucide-react';
 import { FaProductHunt } from 'react-icons/fa';
+import { Analytics } from "@vercel/analytics/react"
+import TikTokPixel from './TikTokPixel';
 
 const theme = extendTheme({
   fonts: {
@@ -63,7 +65,8 @@ const Header = () => {
             height="100px"
           />
           <Heading
-            color="lightred"
+            as="h1" // Change to h1 for SEO
+            color="white" // Change color to white
             fontSize={['2xl', '3xl', '4xl']}
             fontWeight="black"
             letterSpacing="tight"
@@ -514,6 +517,8 @@ const FAQSection = () => {
 const DashDotLanding = () => {
   return (
     <ChakraProvider theme={theme}>
+      <TikTokPixel />
+      <Analytics />
       <Box minH="100vh" bg={useColorModeValue('gray.50', 'gray.900')} className="font-sans h-screen overflow-y-scroll snap-y snap-mandatory scrollbar-hide">
         <Header />
         <FeaturesSection />
