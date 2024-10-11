@@ -35,10 +35,26 @@ const TikTokPixel = () => {
 
             ttq.load('CS4PMEJC77U230TJPQO0');
             ttq.page();
+
+            // Track Chrome Web Store download button click
+            document.querySelector('a[href*="chromewebstore.google.com"]').addEventListener('click', function() {
+                ttq.track('ClickButton', {
+                    content_name: 'Chrome Web Store Download',
+                    content_type: 'product'
+                });
+            });
+
+            // Track Product Hunt button click
+            document.querySelector('a[href*="producthunt.com"]').addEventListener('click', function() {
+                ttq.track('ClickButton', {
+                    content_name: 'Product Hunt',
+                    content_type: 'product'
+                });
+            });
         })(window, document, 'ttq');
     }, []);
 
-    return null; // This component doesn't render anything
+    return null;
 };
 
 export default TikTokPixel;
