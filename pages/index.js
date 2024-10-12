@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle, Clock, Music, Settings, Moon } from 'lucide-react';
 import { FaProductHunt } from 'react-icons/fa';
 import TikTokPixel from './TikTokPixel';
+import posthog from 'posthog-js';
 
 const theme = extendTheme({
   fonts: {
@@ -25,6 +26,18 @@ const theme = extendTheme({
 const MotionBox = motion(Box);
 
 const Header = () => {
+  const handleChromeStoreClick = () => {
+    posthog.capture('chrome_store_button_clicked', {
+      buttonLocation: 'header'
+    });
+  };
+
+  const handleProductHuntClick = () => {
+    posthog.capture('product_hunt_button_clicked', {
+      buttonLocation: 'header'
+    });
+  };
+
   return (
     <Box
       position="relative"
@@ -79,7 +92,7 @@ const Header = () => {
               whileHover={{ scale: 1.1, opacity: 0.9 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <Link href="https://chromewebstore.google.com/detail/dashdot-todo-task-list/cchfkkgnanpaeibglebgpjcfbdmdaadf" isExternal>
+              <Link href="https://chromewebstore.google.com/detail/dashdot-todo-task-list/cchfkkgnanpaeibglebgpjcfbdmdaadf" isExternal onClick={handleChromeStoreClick}>
                 <Image
                   src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/HRs9MPufa1J1h5glNhut.png"
                   alt="Available in the Chrome Web Store"
@@ -92,7 +105,7 @@ const Header = () => {
               whileHover={{ scale: 1.1, opacity: 0.9 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <Link href="https://www.producthunt.com/posts/dashdot?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-dashdot" isExternal>
+              <Link href="https://www.producthunt.com/posts/dashdot?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-dashdot" isExternal onClick={handleProductHuntClick}>
                 <Image src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=495306&theme=neutral" alt="DashDot on Product Hunt" height="55px" />
               </Link>
             </motion.div>
