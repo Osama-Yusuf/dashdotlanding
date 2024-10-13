@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChakraProvider, Box, VStack, Heading, Text, Grid, GridItem, Image, Flex, Link, useColorModeValue } from '@chakra-ui/react';
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from '@chakra-ui/react';
-import { extendTheme, SimpleGrid, Avatar } from '@chakra-ui/react';
+import { extendTheme, SimpleGrid, Avatar, useBreakpointValue } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { CheckCircle, Clock, Music, Settings, Moon } from 'lucide-react';
 import { FaProductHunt } from 'react-icons/fa';
@@ -38,6 +38,12 @@ const Header = () => {
     });
   };
 
+  const backgroundImage = useBreakpointValue({
+    base: "/fullscreen-mobile.png",
+    md: "/fullscreen-tablet.png",
+    xl: "/fullscreen.png"
+  });
+
   return (
     <Box
       position="relative"
@@ -47,7 +53,7 @@ const Header = () => {
       className='snap-start'
     >
       <Image
-        src="/fullscreen.png"
+        src={backgroundImage}
         alt="DashDot Banner"
         position="absolute"
         top="0"
@@ -55,7 +61,9 @@ const Header = () => {
         width="100%"
         height="100%"
         objectFit="cover"
+        objectPosition={{ base: "center", md: "center", xl: "center" }}
       />
+
       <Box
         position="absolute"
         top="0"
@@ -122,13 +130,11 @@ const Feature = ({ icon, title, description, illustration }) => (
     borderRadius="lg"
     bg="gray.800"
     color="white"
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-    transition={{ duration: 0.2 }}
+    flexDirection={{ base: "column", md: "row" }}
     alignItems="center"
     justifyContent="space-between"
   >
-    <VStack align="start" spacing={4} maxW="70%">
+    <VStack align="start" spacing={4} maxW={{ base: "100%", md: "70%" }} mb={{ base: 4, md: 0 }}>
       <Box color="teal.300">
         {icon}
       </Box>
@@ -136,7 +142,7 @@ const Feature = ({ icon, title, description, illustration }) => (
       <Text fontSize="lg" opacity={0.8}>{description}</Text>
     </VStack>
     <Box>
-      <Image src={illustration} alt={`${title} illustration`} boxSize="150px" />
+      <Image src={illustration} alt={`${title} illustration`} boxSize={{ base: "100px", md: "150px" }} />
     </Box>
   </Flex>
 );
@@ -180,6 +186,8 @@ const FeaturesSection = () => {
   const featureRefs = useRef([]);
   const [isClient, setIsClient] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
+
+  const isDesktop = useBreakpointValue({ base: false, lg: true });
 
   useEffect(() => {
     setIsClient(true);
@@ -270,39 +278,41 @@ const FeaturesSection = () => {
           templateColumns={{ base: "1fr", lg: "1fr 1fr" }}
           gap={8}
         >
-          <GridItem>
-            {isClient && (
-              <Box
-                position="sticky"
-                top="120px"
-                height="80vh"
-                overflow="hidden"
-              >
-                <motion.div
-                  key={activeScreenshot}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                  style={{ height: '100%' }}
+          {isDesktop && (
+            <GridItem>
+              {isClient && (
+                <Box
+                  position="sticky"
+                  top="120px"
+                  height="80vh"
+                  overflow="hidden"
                 >
-                  <Image
-                    src={screenshots[activeScreenshot]}
-                    alt={`DashDot Screenshot ${activeScreenshot + 1}`}
-                    objectFit="contain"
-                    width="100%"
-                    height="100%"
-                  />
-                </motion.div>
-              </Box>
-            )}
-          </GridItem>
+                  <motion.div
+                    key={activeScreenshot}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    style={{ height: '100%' }}
+                  >
+                    <Image
+                      src={screenshots[activeScreenshot]}
+                      alt={`DashDot Screenshot ${activeScreenshot + 1}`}
+                      objectFit="contain"
+                      width="100%"
+                      height="100%"
+                    />
+                  </motion.div>
+                </Box>
+              )}
+            </GridItem>
+          )}
           <GridItem>
             <VStack spacing={8}>
               {features.map((feature, index) => (
                 <Box
                   key={index}
                   ref={(el) => (featureRefs.current[index] = el)}
-                  minHeight="calc(100vh - 40px)"
+                  minHeight={{ base: "auto", lg: "calc(100vh - 40px)" }}
                   display="flex"
                   alignItems="center"
                 >
@@ -310,6 +320,7 @@ const FeaturesSection = () => {
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
+                    style={{ width: '100%' }}
                   >
                     <Feature {...feature} />
                   </motion.div>
