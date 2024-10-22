@@ -108,7 +108,10 @@ export default function Home() {
             </p>
             <div className="flex flex-row justify-center items-center space-x-4 my-8">
               <Button asChild>
-                <Link target="_blank" href="https://chromewebstore.google.com/detail/dashdot-todo-task-list/cchfkkgnanpaeibglebgpjcfbdmdaadf">
+                <Link
+                  target="_blank"
+                  href="https://chromewebstore.google.com/detail/dashdot-todo-task-list/cchfkkgnanpaeibglebgpjcfbdmdaadf"
+                >
                   Install Now
                 </Link>
               </Button>
@@ -127,7 +130,8 @@ export default function Home() {
           <div className="max-w-4xl mx-auto mb-8 relative aspect-video">
             <iframe
               className="w-full h-full rounded-lg shadow-lg"
-              src="https://www.youtube.com/embed/EjIzinrcnT0"
+              src="https://youtu.be/4uJI3GiAaaQ"
+              // src="https://www.youtube.com/embed/EjIzinrcnT0"
               title="DashDot Demo"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
