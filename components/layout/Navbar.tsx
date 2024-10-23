@@ -1,3 +1,5 @@
+'use client'; // Add this to make the Navbar a Client Component
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeChanger } from "@/app/Theme-changer";
@@ -10,6 +12,11 @@ const navLinks = [
 ];
 
 const Navbar = () => {
+  const handleMailTo = (e: { preventDefault: () => void; }) => {
+    e.preventDefault(); // Prevent browser from opening a new tab
+    window.location.href = "mailto:osama9mohamed5@gmail.com";
+  };
+
   return (
     <nav className="py-4 bg-background/30 backdrop-blur-sm sticky top-0 z-50">
       <div className="container flex flex-row justify-between items-center">
@@ -20,13 +27,23 @@ const Navbar = () => {
         <ul className="md:flex flex-row justify-between gap-8 hidden">
           {navLinks.map((link) => (
             <li key={link.title}>
-              <Link
-                href={link.href}
-                className="hover:text-primary transition-colors"
-                target={link.title === "Portfolio" ? "_blank" : undefined}
-              >
-                {link.title}
-              </Link>
+              {link.title === "Contact" ? (
+                <a
+                  href={link.href}
+                  onClick={handleMailTo}
+                  className="hover:text-primary transition-colors"
+                >
+                  {link.title}
+                </a>
+              ) : (
+                <Link
+                  href={link.href}
+                  className="hover:text-primary transition-colors"
+                  target={link.title === "Portfolio" ? "_blank" : undefined}
+                >
+                  {link.title}
+                </Link>
+              )}
             </li>
           ))}
         </ul>

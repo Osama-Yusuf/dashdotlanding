@@ -1,11 +1,28 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { FaInstagram, FaYoutube, FaTiktok } from "react-icons/fa"; // Importing icons
 
 const footerLinks = [
-  { label: "Privacy Policy", href: "#" },
-  { label: "Terms of Service", href: "#" },
   { label: "Contact", href: "mailto:osama9mohamed5@gmail.com" },
   { label: "Portfolio", href: "https://www.osamalabs.com" },
+];
+
+const socialLinks = [
+  {
+    icon: <FaYoutube size={24} />,
+    href: "https://youtube.com/@DashDotPro",
+    label: "YouTube",
+  },
+  {
+    icon: <FaTiktok size={24} />,
+    href: "https://tiktok.com/@DashDotPro",
+    label: "TikTok",
+  },
+  {
+    icon: <FaInstagram size={24} />,
+    href: "https://instagram.com/DashDotPro",
+    label: "Instagram",
+  },
 ];
 
 const Footer = () => {
@@ -28,6 +45,22 @@ const Footer = () => {
             </Button>
           </div>
         </div>
+
+        {/* Social Links Section */}
+        <div className="mt-6 flex justify-center space-x-6">
+          {socialLinks.map(({ icon, href, label }) => (
+            <Link
+              key={label}
+              href={href}
+              target="_blank"
+              className="text-gray-600 hover:text-primary transition-colors"
+              aria-label={label}
+            >
+              {icon}
+            </Link>
+          ))}
+        </div>
+
         <div className="mt-10 py-10 border-t items-center justify-between sm:flex">
           <p>© 2024 DashDot. All rights reserved.</p>
           <ul className="flex flex-wrap items-center gap-4 mt-6 sm:text-sm sm:mt-0">
